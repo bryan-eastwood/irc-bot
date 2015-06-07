@@ -4,4 +4,4 @@
 
 (defcommand ":source" (msg)
   (declare (ignore msg))
-  (msg "https://github.com/bryan-eastwood/irc-bot/tree/master/plugins"))
+  (msg "https://github.com/bryan-eastwood/irc-bot/"))

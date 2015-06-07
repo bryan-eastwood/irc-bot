@@ -1,3 +1,3 @@
 (defvar *server* "irc.rizon.net")
-(defvar *channel* "#/g/bots")
+(defvar *channel* "#/g/technology")
 (defvar *nick* "dennis-bot")
