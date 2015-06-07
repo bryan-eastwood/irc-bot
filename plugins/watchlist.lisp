@@ -6,7 +6,8 @@
               (decode-universal-time (get-universal-time))
             (with-open-file (log "logs/watchlist.log"
                 :direction :output
-                :if-exists :append)
+                :if-exists :append
+                :if-does-not-exist :create)
               (format log "[~a:~a:~a ~a/~a/~a] (~a) ~{~a~^ ~}~%"
                 hour min sec month day year (user msg) (words msg))))))
     *msg-hook*))
