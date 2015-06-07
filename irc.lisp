@@ -5,6 +5,7 @@
 (defpackage :irc
   (:use :cl :trivial-irc :cl-fad :bt)
   (:export #:*client*
+           #:*msg-hook*
            #:msg
            #:user-msg
            #:user-msg-p
@@ -28,6 +29,7 @@
 (defgeneric user-msg-p (msg))
 (defgeneric call-applicable-command (msg))
 
+(defvar *msg-hook* nil)
 (defvar *commands* nil)
 (defvar *client* (make-instance 'client
                                 :log-pathname nil 

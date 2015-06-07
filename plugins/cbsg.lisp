@@ -1,0 +1,12 @@
+(ql:quickload :drakma)
+(ql:quickload :closure-html)
+(ql:quickload :cxml-stp)
+
+(defcommand ":cbsg" (msg)
+  (declare (ignore msg))
+  (let ((request (drakma:http-request "http://cbsg.sourceforge.net/cgi-bin/live")))
+    (stp:do-recursively (x (chtml:parse request (cxml-stp:make-builder)))
+      (when (and (typep x 'stp:element)
+            (equal (stp:local-name x) "li"))
+        (msg (stp:string-value x))
+        (return)))))
