@@ -2,3 +2,4 @@
 (defvar *channel* "#/g/bots")
 (defvar *nick* "dennis-bot")
 (defvar *watchlist* '("dennis" "id_just"))
+(defvar *admins* '("dennis"))

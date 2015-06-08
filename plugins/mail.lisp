@@ -9,9 +9,5 @@
         (remhash (user msg) *mail*)))
     *msg-hook*))
 
-(defun concatenate-words (words)
-  (with-output-to-string (stream)
-    (format stream "~{~a~^ ~}" words)))
-
 (defcommand ":mail" (msg)
   (push (concatenate-words (cddr (words msg))) (gethash (cadr (words msg)) *mail*)))

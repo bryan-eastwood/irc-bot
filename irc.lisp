@@ -7,6 +7,7 @@
   (:export #:*client*
            #:*msg-hook*
            #:msg
+           #:reload-plugins
            #:user-msg
            #:user-msg-p
            #:user
@@ -20,11 +21,12 @@
 (load "config.lisp")
 
 (defclass msg ()
-  ((contents :initarg :contents :accessor contents)))
+  ((raw :initarg :raw :accessor raw)))
 
 (defclass user-msg (msg)
   ((user :initarg :user :accessor user)
-   (words :initarg :words :accessor words)))
+   (words :initarg :words :accessor words)
+   (text :initarg :text :accessor text)))
 
 (defgeneric user-msg-p (msg))
 (defgeneric call-applicable-command (msg))
@@ -49,13 +51,20 @@
     collect (subseq string i j)
     while j))
 
+(defun concatenate-words (words)
+  (with-output-to-string (stream)
+    (format stream "~{~a~^ ~}" words)))
+
 (defmacro defcommand (name args &body body)
   `(push
     (cons ,name
       (lambda ,args
         ,@body)) *commands*))
 
-(mapcar #'load (list-directory "plugins/"))
+(defun reload-plugins ()
+  (mapcar #'load (list-directory "plugins/")))
+
+(reload-plugins)
 
 (defmethod user-msg-p ((msg msg))
   (eq (class-of msg) (class-of #.(make-instance 'user-msg))))
@@ -64,11 +73,11 @@
   (let ((split (split-seq text #\space)))
     (if (string= (cadr split) "PRIVMSG")
         (make-instance 'user-msg
-          :contents text
+          :raw text
           :user (subseq text 1 (position #\! text))
           :words (cons (subseq (cadddr split) 1) (cddddr split)))
         (make-instance 'msg
-          :contents text))))
+          :raw text))))
 
 (defmethod call-applicable-command ((msg msg))
   (loop for command in *commands*

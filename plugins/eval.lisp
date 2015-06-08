@@ -18,10 +18,6 @@
       (cond ((and (typep x 'stp:element) (equal (stp:local-name x) "pre")) (incf i))
             ((= i 3) (return-from evaluate (stp:string-value x)))))))
 
-(defun concatenate-words (words)
-  (with-output-to-string (stream)
-    (format stream "~{~a~^ ~}" words)))
-
 (defcommand ":eval" (msg)
   (let ((output (evaluate (cadr (words msg)) (concatenate-words (cddr (words msg))))))
     (if (every (lambda (c) (or (char= c #\space) (char= c #\newline))) output)
