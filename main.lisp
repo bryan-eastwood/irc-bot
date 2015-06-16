@@ -12,4 +12,10 @@
     (if (user-msg-p msg)
         (call-applicable-command msg))))
 
-(read-message-loop)
+(if (= 0 (sb-posix:fork))
+    (progn
+      (sb-posix:setsid)
+      (read-message-loop)
+      (when (/= 0 (sb-posix:fork))
+        (sb-ext:exit)))
+    (sb-ext:exit))

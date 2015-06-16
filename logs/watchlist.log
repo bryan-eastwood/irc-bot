@@ -312,3 +312,16 @@
 [2:35:9 6/8/2015] (dennis) :reload
 [2:35:22 6/8/2015] (dennis) :reload
 [2:35:36 6/8/2015] (dennis) :reload
+[22:3:1 6/16/2015] (dennis) >tfw dennis-bot takes ages to compile
+[22:3:1 6/16/2015] (dennis) installgen2: wouldnt you like that?
+[22:3:1 6/16/2015] (dennis) #POKED AND SMOKED
+[22:3:19 6/16/2015] (dennis) too late
+[22:4:23 6/16/2015] (dennis) here we go
+[22:4:30 6/16/2015] (dennis) :about
+[22:4:47 6/16/2015] (dennis) .bots
+[22:5:0 6/16/2015] (dennis) try :eval
+[22:5:13 6/16/2015] (dennis) :eval ruby puts 1 + 1
+[22:5:28 6/16/2015] (dennis) you have to specify a language
+[22:5:35 6/16/2015] (dennis) look at the available languages at
+[22:5:36 6/16/2015] (dennis) :source
+[22:5:52 6/16/2015] (dennis) excuse the horrible code

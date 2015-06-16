@@ -1,5 +1,5 @@
 (defvar *server* "irc.rizon.net")
-(defvar *channel* "#/g/bots")
+(defvar *channel* "#/g/technology")
 (defvar *nick* "dennis-bot")
 (defvar *watchlist* '("dennis" "id_just"))
 (defvar *admins* '("dennis"))
